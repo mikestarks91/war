@@ -91,7 +91,21 @@ $(document).ready(function() {
 		//compare the cards
 		//give the winner both cards (at end of deck)
 	var play = function(){
-		
+		var winningCard = war(cards_player_1[0].number, cards_player_2[0].number);
+		if(winningCard === cards_player_1[0].number) {
+			cards_player_1.push(cards_player_1.shift());
+			cards_player_1.push(cards_player_2[0]);
+			cards_player_2.splice(0,1);
+		}
+		else if(winningCard == cards_player_2[0].number) {
+			cards_player_2.push(cards_player_2.shift());
+			cards_player_2.push(cards_player_1[0]);
+			cards_player_1.splice(0,1);
+		}
+		else {
+			cards_player_1.push(cards_player_1.shift());
+			cards_player_2.push(cards_player_2.shift());
+		}
 		//this function (defined below) will continue to the next turn
 		advance();
 	}
